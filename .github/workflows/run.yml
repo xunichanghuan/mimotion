@@ -56,5 +56,5 @@ jobs:
           git config --global user.email "kurtn@126.com"
           git add .
           git commit -m '重置下次刷新时间'
-          git remote set-url origin http://kurtn2005:${git_pwd}@github.com/allstreaming/mimotion.git
+          git remote set-url origin http://kurtn2005:${git_pwd}@github.com/allstreaming/mimotion-2.git
           git push
