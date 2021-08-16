@@ -13,7 +13,7 @@
 | PWD |   小米运动登录密码,仅支持小米运动账号对应的密码|
 | SKEY |   酷推skey，如无填写**NO**|
 | SCKEY |   server酱sckey，如无填写**NO**|
-| POSITION |   s是否开启企业微信推送**false**关闭,**true**开启|
+| POSITION |   是否开启企业微信推送**false**关闭,**true**开启|
 | CORPID |   企业ID， 登陆企业微信，在我的企业-->企业信息里查看,必填，如果没有，填写**NO**|
 | CORPSECRET |   自建应用，每个自建应用里都有单独的secret,必填，如果没有，填写**NO**|
 | AGENTID |   填写你的应用ID，不加引号，是个整型常数,就是AgentId，如果没有，填写**NO**|
@@ -60,6 +60,4 @@
 
 7. 请各位在使用时Fork[主分支](https://github.com/xunichanghuan/mimotion/)，防止出现不必要的bug.
 
-8. TG推送教程 [点我](./TG_PUSH.md)
-
-9. 请注意，账号不是 [小米账号]，而是 [小米运动] 的账号。
+8. 请注意，账号不是 [小米账号]，而是 [小米运动] 的账号。
