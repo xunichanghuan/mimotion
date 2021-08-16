@@ -1,13 +1,4 @@
-# mimotion
-![ 刷步数](https://github.com/xunichanghuan/mimotion/actions/workflows/run.yml/badge.svg)
-![同步到Gitee](https://github.com/xunichanghuan/mimotion/actions/workflows/sync2gitee.yml/badge.svg)
-[![GitHub forks](https://img.shields.io/github/forks/xunichanghuan/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/network)
-[![GitHub stars](https://img.shields.io/github/stars/xunichanghuan/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/xunichanghuan/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/issues)
-
 # 小米运动自动刷步数
-
-> 小米运动自动刷步数
 
 ## Github Actions 部署指南
 
@@ -72,7 +63,3 @@
 8. TG推送教程 [点我](./TG_PUSH.md)
 
 9. 请注意，账号不是 [小米账号]，而是 [小米运动] 的账号。
-
-## 历史Star数
-
-[![Stargazers over time](https://starchart.cc/xunichanghuan/mimotion.svg)](https://starchart.cc/xunichanghuan/mimotion)
