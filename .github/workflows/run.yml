@@ -7,7 +7,7 @@ on:
   #  branches: [ main ]
   #workflow_dispatch:
   schedule:
-    - cron: 6 0,2,4,6,8,10,12 * * *
+    - cron: 0 0,2,4,6,8,10,12 * * *
   #watch:
   #  types: started
 
@@ -47,14 +47,3 @@ jobs:
           open_get_weather='${{ secrets.OPEN_GET_WEATHER }}'
           area='${{ secrets.AREA }}'
           python3 main.py ${user} ${passwd} ${skey} ${sckey} ${position} ${corpid} ${corpsecret} ${agentid} ${touser} ${toparty} ${totag} ${open_get_weather} ${area}
-
-      - name: 重置刷新时间
-        run: |
-          zsh random_cron.sh
-          git_pwd='${{ secrets.GIT_PWD }}'
-          git config --global user.name "kurtn2005"
-          git config --global user.email "kurtn@126.com"
-          git add .
-          git commit -m '重置下次刷新时间'
-          git remote set-url origin http://kurtn2005:${git_pwd}@github.com/allstreaming/Steps.git
-          git push
