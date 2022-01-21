@@ -370,6 +370,6 @@ if __name__ == "__main__":
     # 开启根据地区天气情况降低步数（默认关闭）
     open_get_weather = False if checkArgs(5, False) != True else True
     # 设置获取天气的地区（上面开启后必填）如：area = "宁波"
-    area = checkArgs(13, False)
-
+    area = checkArgs(13, False)            
+    print("用户："+users)
     getBeijinTime()
