@@ -1,33 +1,13 @@
 # -*- coding: utf8 -*-
-import requests, time, datetime, re,sys, json, random
+import requests, time, datetime, re, sys, json, random
 
 # 设置开始
 # 用户名（格式为 13800138000）
 
-# 酷推skey和server酱sckey和企业微信设置，只用填一个其它留空即可
-skey = sys.argv[3]
-# 推送server酱
-sckey = sys.argv[4]
-# 企业微信推送
-# 是否开启企业微信推送false关闭true开启，默认关闭，开启后请填写设置并将上面两个都留空
-position = sys.argv[5]
-base_url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?'
-req_url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token='
-corpid = sys.argv[6]  # 企业ID， 登陆企业微信，在我的企业-->企业信息里查看
-corpsecret = sys.argv[7]  # 自建应用，每个自建应用里都有单独的secret
-agentid = sys.argv[8]  # 填写你的应用ID，不加引号，是个整型常数,就是AgentId
-touser = sys.argv[9]  # 指定接收消息的成员，成员ID列表（多个接收者用‘|’分隔，最多支持1000个）。特殊情况：指定为”@all”，则向该企业应用的全部成员发送
-toparty = sys.argv[10]  # 指定接收消息的部门，部门ID列表，多个接收者用‘|’分隔，最多支持100个。当touser为”@all”时忽略本参数
-totag = sys.argv[11]  # 指定接收消息的标签，标签ID列表，多个接收者用‘|’分隔，最多支持100个。当touser为”@all”时忽略本参数
 
 # （用于测试推送如果改了能收到推送，推送设置就没问题，看看是不是set_push列表里面没设置推送，仔细看下面我写的很详细）要修改的步数，直接输入想要修改的步数值，（默认）留空为随机步数，改了这个直接运行固定值（用于测试推送）
 # 测试好记得留空不然一直提交固定步数
 step1 = ""
-
-# 开启根据地区天气情况降低步数（默认关闭）
-open_get_weather = sys.argv[12]
-# 设置获取天气的地区（上面开启后必填）如：area = "宁波"
-area = sys.argv[13]
 
 # 以下如果看不懂直接默认就行只需改上面
 
@@ -44,18 +24,20 @@ time_list = [8, 10, 13, 15, 17, 19, 21]
 set_push = [True, True, True, True, True, True, True]
 
 # 最小步数（如果只需要刷步的次数少于7次就将该次数以后的步数全都改成0，如：time_list[3]: 0，表示第五次开始不运行或者直接云函数触发里面不在该时间调用均可（建议用后者））
-min_dict = {time_list[0]: 6000, time_list[1]: 10000, time_list[2]: 20000, time_list[3]: 30000, time_list[4]: 40000, time_list[5]: 50000, time_list[6]: 60000}
+min_dict = {time_list[0]: 6000, time_list[1]: 10000, time_list[2]: 20000, time_list[3]: 30000, time_list[4]: 40000,
+            time_list[5]: 50000, time_list[6]: 60000}
 # 最大步数（例如现在设置意思是在8点（你设置的第一个时间点默认8）运行会在1500到2999中随机生成一个数提交（开启气候降低步数会乘系数K）10点3000~4999。。。以此类推，步数范围建议看懂了再改，没看懂直接默认就好）
-max_dict = {time_list[0]: 9999, time_list[1]: 19999, time_list[2]: 29999, time_list[3]: 39999, time_list[4]: 49999, time_list[5]: 59999, time_list[6]: 69999}
+max_dict = {time_list[0]: 9999, time_list[1]: 19999, time_list[2]: 29999, time_list[3]: 39999, time_list[4]: 49999,
+            time_list[5]: 59999, time_list[6]: 69999}
 # 设置结束
-#now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+# now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 # 北京时间
 time_bj = datetime.datetime.today() + datetime.timedelta(hours=8)
 now = time_bj.strftime("%Y-%m-%d %H:%M:%S")
 headers = {'User-Agent': 'MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)'}
 
 
-#获取区域天气情况
+# 获取区域天气情况
 def getWeather():
     if area == "NO":
         print(area == "NO")
@@ -89,7 +71,7 @@ def getWeather():
             print("获取天气情况出错")
 
 
-#获取北京时间确定随机步数&启动主函数
+# 获取北京时间确定随机步数&启动主函数
 def getBeijinTime():
     global K, type
     K = 1.0
@@ -101,7 +83,7 @@ def getBeijinTime():
     r = requests.get(url=url, headers=hea)
     if r.status_code == 200:
         result = r.text
-        #print(result)
+        # print(result)
         if "nhrs=" + str(time_list[0]) in result:
             a = set_push[0]
             min_1 = min_dict[time_list[0]]
@@ -145,25 +127,25 @@ def getBeijinTime():
         print("获取北京时间失败")
         return
     if min_1 != 0 and max_1 != 0:
-        user_mi = sys.argv[1]
+        user_mi = users
         # 登录密码
-        passwd_mi = sys.argv[2]
+        passwd_mi = passwds
         user_list = user_mi.split('#')
         passwd_list = passwd_mi.split('#')
-        if len(user_list) == len(passwd_list):        
+        if len(user_list) == len(passwd_list):
             if K != 1.0:
-                msg_mi =  "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n" 
+                msg_mi = "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n"
             else:
                 msg_mi = ""
             for user_mi, passwd_mi in zip(user_list, passwd_list):
-                msg_mi += main(user_mi,passwd_mi,min_1, max_1)
-                #print(msg_mi)
+                msg_mi += main(user_mi, passwd_mi, min_1, max_1)
+                # print(msg_mi)
             if a:
-               push('【小米运动步数修改】', msg_mi)
-               push_wx(msg_mi)
-               run(msg_mi)
+                push('【小米运动步数修改】', msg_mi)
+                push_wx(msg_mi)
+                run(msg_mi)
             else:
-               print("此次修改结果不推送")
+                print("此次修改结果不推送")
     else:
         print("当前不是主人设定的提交步数时间或者主人设置了0步数呢，本次不提交")
         return
@@ -221,7 +203,7 @@ def login(user, password):
 
 
 # 主函数
-def main(_user,_passwd,min_1, max_1):
+def main(_user, _passwd, min_1, max_1):
     user = str(_user)
     password = str(_passwd)
     step = str(step1)
@@ -264,7 +246,7 @@ def main(_user,_passwd,min_1, max_1):
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
     result = f"[{now}]\n账号：{user[:3]}****{user[7:]}\n修改步数（{step}）[" + response['message'] + "]\n"
-    #print(result)
+    # print(result)
     return result
 
 
@@ -286,7 +268,7 @@ def get_app_token(login_token):
     return app_token
 
 
-#发送酷推
+# 发送酷推
 def push(title, content):
     if skey == "NO":
         print(skey == "NO")
@@ -344,13 +326,50 @@ def run(msg):
         req_urls = req_url + get_access_token()
         resp = requests.post(url=req_urls, data=data).text
         print(resp)
-        #print(data)
+        # print(data)
         return resp
     else:
         return
 
+
 def main_handler(event, context):
     getBeijinTime()
 
+
+def checkArgs(index, must):
+    try:
+        return sys.argv[index]
+    except IndexError as e:
+        print("参数有误：" + str(e))
+        if (must):
+            exit(1)
+        else:
+            return "NO"
+
+
 if __name__ == "__main__":
+    # 用户
+    users = checkArgs(1, True)
+    # 登录密码
+    passwds = checkArgs(2, True)
+    # 酷推skey和server酱sckey和企业微信设置，只用填一个其它留空即可
+    skey = checkArgs(3, False)
+    # 推送server酱
+    sckey = checkArgs(4, False)
+    # 企业微信推送
+    # 是否开启企业微信推送false关闭true开启，默认关闭，开启后请填写设置并将上面两个都留空
+    position = False if checkArgs(5, False) != True else True
+    base_url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?'
+    req_url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token='
+    corpid = checkArgs(6, False)  # 企业ID， 登陆企业微信，在我的企业-->企业信息里查看
+    corpsecret = checkArgs(7, False)  # 自建应用，每个自建应用里都有单独的secret
+    agentid = checkArgs(8, False)  # 填写你的应用ID，不加引号，是个整型常数,就是AgentId
+    touser = checkArgs(9, False)  # 指定接收消息的成员，成员ID列表（多个接收者用‘|’分隔，最多支持1000个）。特殊情况：指定为”@all”，则向该企业应用的全部成员发送
+    toparty = checkArgs(10, False)  # 指定接收消息的部门，部门ID列表，多个接收者用‘|’分隔，最多支持100个。当touser为”@all”时忽略本参数
+    totag = checkArgs(11, False)  # 指定接收消息的标签，标签ID列表，多个接收者用‘|’分隔，最多支持100个。当touser为”@all”时忽略本参数
+    # 开启根据地区天气情况降低步数（默认关闭）
+    open_get_weather = False if checkArgs(5, False) != True else True
+    # 设置获取天气的地区（上面开启后必填）如：area = "宁波"
+    area = checkArgs(13, False)
+
     getBeijinTime()
