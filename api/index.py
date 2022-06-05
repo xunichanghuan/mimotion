@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 
-from _mimotion import mimotion
+from ._mimotion import mimotion
 
 app = Flask(__name__)
 
