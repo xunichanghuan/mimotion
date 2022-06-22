@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 import requests, time, datetime, re,sys, json, random
-from urllib import quote
+from pypushdeer import PushDeer
 
 # 设置开始
 # 用户名（格式为 13800138000）
@@ -328,11 +328,10 @@ def push_pushdeer(desp=""):
         print(push_deer_key == "NO")
         return
     else:
-        text = quote(desp)
-        server_url = f"https://api2.pushdeer.com/message/push?pushkey={push_deer_key}&text=【小米运动步数修改】{text}"
+        pushdeer = PushDeer(pushkey = push_deer_key)
+        pushdeer.send_text("【小米运动步数修改】", desp = desp)
 
-        response = requests.get(server_url).text
-        print(response)
+        print('pushdeer推送成功')
 
 
 # 企业微信
