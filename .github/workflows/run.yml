@@ -30,7 +30,7 @@ jobs:
           
       - name: 开始
         run: |
-          pip3 install requests urllib
+          pip3 install requests pypushdeer
           user='${{ secrets.USER }}'
           passwd='${{ secrets.PWD }}'
           skey='${{ secrets.SKEY }}'
