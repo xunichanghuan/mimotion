@@ -30,7 +30,7 @@ jobs:
           
       - name: 开始
         run: |
-          pip3 install requests
+          pip3 install requests urllib
           user='${{ secrets.USER }}'
           passwd='${{ secrets.PWD }}'
           skey='${{ secrets.SKEY }}'
