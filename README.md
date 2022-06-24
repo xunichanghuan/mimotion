@@ -1,9 +1,9 @@
 # mimotion
-![ 刷步数](https://github.com/fengqiangboy/mimotion/actions/workflows/run.yml/badge.svg)
-![同步到Gitee](https://github.com/fengqiangboy/mimotion/actions/workflows/sync2gitee.yml/badge.svg)
-[![GitHub forks](https://img.shields.io/github/forks/fengqiangboy/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/network)
-[![GitHub stars](https://img.shields.io/github/stars/fengqiangboy/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/fengqiangboy/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/issues)
+![ 刷步数](https://github.com/xunichanghuan/mimotion/actions/workflows/run.yml/badge.svg)
+![同步到Gitee](https://github.com/xunichanghuan/mimotion/actions/workflows/sync2gitee.yml/badge.svg)
+[![GitHub forks](https://img.shields.io/github/forks/xunichanghuan/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/network)
+[![GitHub stars](https://img.shields.io/github/stars/xunichanghuan/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/xunichanghuan/mimotion?style=flat-square)](https://github.com/xunichanghuan/mimotion/issues)
 
 # 小米运动自动刷步数
 
