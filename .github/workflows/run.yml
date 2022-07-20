@@ -6,10 +6,9 @@ on:
   #pull_request:
   #  branches: [ main ]
   schedule:
-    - cron: '4 0,2,5,7,9,11,13 * * *'
+    - cron: '11 0,2,5,7,9,11,13 * * *'
   watch:
     types: started
-  workflow_dispatch:
 
 jobs:
   build:
@@ -31,7 +30,7 @@ jobs:
           
       - name: 开始
         run: |
-          pip3 install requests
+          pip3 install requests pypushdeer
           user='${{ secrets.USER }}'
           passwd='${{ secrets.PWD }}'
           skey='${{ secrets.SKEY }}'
@@ -45,4 +44,5 @@ jobs:
           totag='${{ secrets.TOTAG }}'
           open_get_weather='${{ secrets.OPEN_GET_WEATHER }}'
           area='${{ secrets.AREA }}'
-          python3 main.py ${user} ${passwd} ${skey} ${sckey} ${position} ${corpid} ${corpsecret} ${agentid} ${touser} ${toparty} ${totag} ${open_get_weather} ${area}
+          pdkey='${{ secrets.PDKEY }}'
+          python3 main.py ${user} ${passwd} ${skey} ${sckey} ${position} ${corpid} ${corpsecret} ${agentid} ${touser} ${toparty} ${totag} ${open_get_weather} ${area} ${pdkey}
